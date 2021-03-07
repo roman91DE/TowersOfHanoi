@@ -1,7 +1,7 @@
 #include "hanoi.h"
 #include <iostream>
 
-Hanoi::Hanoi(int _num_discs, bool _print) 
+Hanoi::Hanoi(int _num_discs) 
 : A (new Stack('A')), B(new Stack('B')), C(new Stack('C')),
   num_discs(_num_discs), current_round(0) {
         for(int i=num_discs; i>0; --i) A->vals.push_back(i);
@@ -22,7 +22,8 @@ void Hanoi::move_disc(Stack *from, Stack *to) {
 
 
 void Hanoi::print_state() const {
-    std::cout << "Round " << current_round << "\nA = ";
+    std::cout << "Round " << current_round 
+              << "\nA = ";
     for (auto &it_A: A->vals) {std::cout << it_A <<  " ";}
     std::cout << "\nB = ";
     for (auto &it_B: B->vals) {std::cout << it_B <<  " ";}
@@ -41,8 +42,8 @@ void Hanoi::solve_recursive(Stack *from, Stack *via, Stack *to, int n) {
     else {
         solve_recursive(from,to,via,n-1);
         move_disc(from,to);
-            ++current_round;
-            print_state();
+        ++current_round;
+        print_state();
         solve_recursive(via,from,to, n-1);
     }
 }

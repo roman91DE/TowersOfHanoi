@@ -14,7 +14,7 @@ class Hanoi{
         const int num_discs;
         int current_round;
     public:
-        Hanoi(int _num_discs, bool _print=true);
+        Hanoi(int _num_discs);
         ~Hanoi();
         void move_disc(Stack *from, Stack *to);
         void solve();
